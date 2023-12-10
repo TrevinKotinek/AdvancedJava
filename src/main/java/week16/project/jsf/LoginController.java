@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import jakarta.ejb.EJB;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.convert.Converter;
@@ -28,9 +29,31 @@ public class LoginController implements Serializable {
     private week16.project.jpa.session.LoginFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    
+    private String username;
+    private String password;
+    private boolean loggedIn;
 
     public LoginController() {
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
 
     public Login getSelected() {
         if (current == null) {
@@ -60,6 +83,24 @@ public class LoginController implements Serializable {
             };
         }
         return pagination;
+    }
+    
+    public String doLogin() {
+        Login login = ejbFacade.findLoginByUsername(username);
+
+        if (login != null && login.getPassword().equals(password)) {
+            loggedIn = true;
+            return "login/List.xhtml?faces-redirect=true";
+        } else {
+            // Invalid login, show error message or redirect to login page
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Invalid username or password"));
+            return null;
+        }
+    }
+    
+    public String doLogout() {
+        loggedIn = false;
+        return "index?faces-redirect=true";
     }
 
     public String prepareList() {

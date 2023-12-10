@@ -6,7 +6,9 @@ package week16.project.jpa.session;
 
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import week16.project.entities.Login;
 
 /**
@@ -26,6 +28,17 @@ public class LoginFacade extends AbstractFacade<Login> {
 
     public LoginFacade() {
         super(Login.class);
+    }
+    
+    public Login findLoginByUsername(String username) {
+        TypedQuery<Login> query = em.createQuery("SELECT l FROM Login l WHERE l.username = :username", Login.class);
+        query.setParameter("username", username);
+        
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
 }

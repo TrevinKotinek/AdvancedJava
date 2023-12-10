@@ -7,7 +7,18 @@
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="username">Username:</h:outputLabel>
+                <h:inputText id="username" value="#{loginController.username}" required="true" />
+
+                <h:outputLabel for="password">Password:</h:outputLabel>
+                <h:inputSecret id="password" value="#{loginController.password}" required="true" />
+
+            </h:panelGrid>
+
+            <h:commandButton value="Login" action="#{loginController.doLogin}" />
+        </h:form>
         <br />
         <h:link outcome="/login/List" value="Show All Login Items"/>
         <br></br>
