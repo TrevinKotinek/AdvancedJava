@@ -33,6 +33,7 @@ public class LoginController implements Serializable {
     private String username;
     private String password;
     private boolean loggedIn;
+    private String newPassword;
 
     public LoginController() {
     }
@@ -59,6 +60,14 @@ public class LoginController implements Serializable {
     
     public void setloggedIn(Boolean loggedIn){
         this.loggedIn=loggedIn;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
     
     public Login getSelected() {
@@ -144,10 +153,12 @@ public class LoginController implements Serializable {
     }
 
     public String update() {
+        Login login = getFacade().findLoginByUsername(username);
+        login.setPassword(newPassword);
         try {
-            getFacade().edit(current);
+            getFacade().edit(login);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/resources/Bundle").getString("LoginUpdated"));
-            return "View";
+            return "home.xhtml?faces-redirect=true";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/resources/Bundle").getString("PersistenceErrorOccured"));
             return null;

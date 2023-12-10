@@ -15,22 +15,15 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditLoginLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{loginController.selected.id}" title="#{bundle.EditLoginTitle_id}" required="true" requiredMessage="#{bundle.EditLoginRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.EditLoginLabel_username}" for="username" />
-                    <h:inputText id="username" value="#{loginController.selected.username}" title="#{bundle.EditLoginTitle_username}" required="true" requiredMessage="#{bundle.EditLoginRequiredMessage_username}"/>
+                    <h:outputLabel value="Change Password for: #{loginController.username}" for="username" />
+                    <br />
                     <h:outputLabel value="#{bundle.EditLoginLabel_password}" for="password" />
-                    <h:inputText id="password" value="#{loginController.selected.password}" title="#{bundle.EditLoginTitle_password}" required="true" requiredMessage="#{bundle.EditLoginRequiredMessage_password}"/>
+                    <h:inputText id="password" value="#{loginController.newPassword}" title="#{bundle.EditLoginTitle_password}" required="true" requiredMessage="#{bundle.EditLoginRequiredMessage_password}"/>
                 </h:panelGrid>
                 <h:commandLink action="#{loginController.update}" value="#{bundle.EditLoginSaveLink}"/>
                 <br />
                 <br />
-                <h:link outcome="View" value="#{bundle.EditLoginViewLink}"/>
-                <br />
-                <h:commandLink action="#{loginController.prepareList}" value="#{bundle.EditLoginShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditLoginIndexLink}" />
+                <h:link outcome="/home" value="Back to home"/>
             </h:form>
         </ui:define>
     </ui:composition>
