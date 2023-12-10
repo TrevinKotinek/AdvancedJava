@@ -90,7 +90,7 @@ public class LoginController implements Serializable {
 
         if (login != null && login.getPassword().equals(password)) {
             loggedIn = true;
-            return "login/List.xhtml?faces-redirect=true";
+            return "home.xhtml?faces-redirect=true";
         } else {
             // Invalid login, show error message or redirect to login page
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Invalid username or password"));
