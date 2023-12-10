@@ -5,12 +5,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <head>
         <title>Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
         <h:link outcome="/about" value="About Us"/>
+        <br></br>
+        <c:if test="${loginController.loggedIn == true}">
+        <h:link outcome="/login/Edit" value="Change Password"/>
+        <br></br>
+        </c:if>
+        <c:if test="${loginController.loggedIn == true}">
+            <h:form>
+                <h:commandLink value="Logout" action="${loginController.doLogout}"/>
+            </h:form>
+        </c:if>
+        
     </body>
 </html>

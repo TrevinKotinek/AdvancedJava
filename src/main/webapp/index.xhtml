@@ -1,12 +1,21 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Login</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
+        <c:choose>
+            <c:when test="${loginController.loggedIn == true}">
+                <h2>Status: Logged in</h2>
+            </c:when>
+            <c:otherwise>
+                <h2>Status: Logged out</h2>
+            </c:otherwise>
+        </c:choose>
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputLabel for="username">Username:</h:outputLabel>
@@ -18,10 +27,18 @@
             </h:panelGrid>
 
             <h:commandButton value="Login" action="#{loginController.doLogin}" />
+            <c:if test="${loginController.loggedIn == true}">
+            <h:commandButton value="Logout" action="${loginController.doLogout}"/>
+            </c:if>
         </h:form>
         <br></br>
         <br></br>
         <h:link outcome="/Create" value="Create New Account"/>
+        <br></br>
+        <br></br>
+        <c:if test="${loginController.loggedIn == true}">
+        <h:link outcome="/login/Edit" value="Change Password"/>
+        </c:if>
     </h:body>
 
 </html>

@@ -19,14 +19,14 @@ import jakarta.faces.model.DataModel;
 import jakarta.faces.model.ListDataModel;
 import jakarta.faces.model.SelectItem;
 
-@Named("loginController")
+@Named
 @SessionScoped
 public class LoginController implements Serializable {
-
+    private static final long serialVersionUID = -8163374738411860012L;
     private Login current;
     private DataModel items = null;
     @EJB
-    private week16.project.jpa.session.LoginFacade ejbFacade;
+    private LoginFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
     
@@ -53,8 +53,14 @@ public class LoginController implements Serializable {
         this.password = password;
     }
     
+    public Boolean getloggedIn(){
+        return loggedIn;
+    }
     
-
+    public void setloggedIn(Boolean loggedIn){
+        this.loggedIn=loggedIn;
+    }
+    
     public Login getSelected() {
         if (current == null) {
             current = new Login();
