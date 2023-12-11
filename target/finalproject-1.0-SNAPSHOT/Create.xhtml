@@ -21,10 +21,10 @@
                     <h:inputText id="password" value="#{loginController.selected.password}" title="#{bundle.CreateLoginTitle_password}" required="true" requiredMessage="#{bundle.CreateLoginRequiredMessage_password}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{loginController.create}" value="#{bundle.CreateLoginSaveLink}" />
+                <h:commandButton action="#{loginController.create}" value="#{bundle.CreateLoginSaveLink}" />
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.CreateLoginBackLink}"/>
+                <h:button outcome="/index" value="#{bundle.CreateLoginBackLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

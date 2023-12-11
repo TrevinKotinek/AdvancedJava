@@ -20,10 +20,10 @@
                     <h:outputLabel value="#{bundle.EditLoginLabel_password}" for="password" />
                     <h:inputText id="password" value="#{loginController.newPassword}" title="#{bundle.EditLoginTitle_password}" required="true" requiredMessage="#{bundle.EditLoginRequiredMessage_password}"/>
                 </h:panelGrid>
-                <h:commandLink action="#{loginController.update}" value="#{bundle.EditLoginSaveLink}"/>
+                <h:commandButton action="#{loginController.update}" value="#{bundle.EditLoginSaveLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/home" value="Back to home"/>
+                <h:button outcome="/home" value="Back to home"/>
             </h:form>
         </ui:define>
     </ui:composition>

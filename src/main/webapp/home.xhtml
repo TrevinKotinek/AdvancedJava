@@ -12,14 +12,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <body>
-        <h:link outcome="/aboutTrevin" value="About Trevin"/>
+        <h:button outcome="/aboutTrevin" value="About Trevin"/>
         <br />
         <br />
-        <h:link outcome="/aboutChris" value="About Chris"/>
+        <h:button outcome="/aboutChris" value="About Chris"/>
         <br></br>
         <br />
         <c:if test="${loginController.loggedIn == true}">
-        <h:link outcome="/Edit" value="Change Password"/>
+        <h:button outcome="/Edit" value="Change Password"/>
         <br></br>
         <br />
         </c:if>
